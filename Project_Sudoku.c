@@ -22,7 +22,7 @@ int main(){
 	    FILE *f;
 		srand(time(0));
 	while(1){
-//____________________________________________________________________________Вивід головного меню
+//____________________________________________________________________________Р’РёРІС–Рґ РіРѕР»РѕРІРЅРѕРіРѕ РјРµРЅСЋ
 			SetConsoleTextAttribute(console, FOREGROUND_RED | FOREGROUND_GREEN);
 			printf("\nEnter level of difficult:    [1] [2] [3]: \n");
 			printf("\nFor finisch enter:           [4]: \n");
@@ -41,7 +41,7 @@ int main(){
 		}
 		system("cls");
 //_________________________________________________________________________	
-//-----------------------------------------------------Вивод правил з файлу
+//-----------------------------------------------------Р’РёРІС–Рґ РїСЂР°РІРёР» Р· С„Р°Р№Р»Сѓ
 		if(number==9){
 			f = fopen("Rules.txt", "r");
 			if(f==NULL){
@@ -57,10 +57,10 @@ int main(){
 				system("cls");
 			continue;
 		}
-//----------------------------------------------------Заповнення матрици
+//----------------------------------------------------Р—Р°РїРѕРІРЅРµРЅРЅСЏ РјР°С‚СЂРёС†С–
 			for(i=0; i<n; i++){
 				for(j=0; j<m; j++){
-					mas[i][j] = ((i*3+i/3+j)%(3*3)+1)+'0';//Алгоритм заповнення матриці числами так, щоб вони не перетиналися
+					mas[i][j] = ((i*3+i/3+j)%(3*3)+1)+'0';//РђР»РіРѕСЂРёС‚Рј Р·Р°РїРѕРІРЅРµРЅРЅСЏ РјР°С‚СЂРёС†С– С‡РёСЃР»Р°РјРё С‚Р°Рє, С‰РѕР± РІРѕРЅРё РЅРµ РїРµСЂРµС‚РёРЅР°Р»РёСЃСЏ
 				}
 			}
 			keyboard_input(mas, copy_mas, number);
@@ -72,7 +72,7 @@ void transpon(char mas[n][m], char copy_mas[n][m]){
 	char mas2[n][m];
 	int i, j, count=0, count2=0, block=0, r, s;
 	char temp[n];
-//-----------------------------------------------------транспонування матриці
+//-----------------------------------------------------РўСЂР°РЅСЃРїРѕРЅСѓРІР°РЅРЅСЏ РјР°С‚СЂРёС†С–
 	for(i=0; i<n; i++){
 		for(j=0; j<m; j++){
 			mas2[j][i]=mas[i][j];
@@ -83,7 +83,7 @@ void transpon(char mas[n][m], char copy_mas[n][m]){
 			mas[i][j]=mas2[i][j];
 		}
 	}
-//--------------------------------------------------------------тасовка строк
+//--------------------------------------------------------------РўР°СЃРѕРІРєР° СЂСЏРґРєС–РІ
 		r=0+rand()%3;
 		do
 		{
@@ -98,7 +98,7 @@ void transpon(char mas[n][m], char copy_mas[n][m]){
 					}
 				}
 			}
-//----------------------------------------------------------тасовка столбцов
+//----------------------------------------------------------РўР°СЃРѕРІРєР° СЃС‚РѕРІРїС†С–РІ
 		r=0+rand()%3;
 		do
 		{
@@ -120,11 +120,11 @@ void transpon(char mas[n][m], char copy_mas[n][m]){
 	}
 }
 
-//----------------------------------------------рандомне затирання чисел
+//----------------------------------------------Р Р°РЅРґРѕРјРЅРµ Р·Р°С‚РµСЂР°РЅРЅСЏ С‡РёСЃРµР»
 void mashing(char mas[n][m], char copy_mas[n][m], int number){
 	transpon(mas, copy_mas);
 		int i,j, s=0, r=0, k=0;
-	//__________________________________________Перша складність
+	//__________________________________________РџРµСЂС€Р° СЃРєР»Р°РґРЅС–СЃС‚СЊ
 			if(number==1){
 				for(i=0; i<n; i++){
 					for(j=0; j<m; j++){
@@ -139,7 +139,7 @@ void mashing(char mas[n][m], char copy_mas[n][m], int number){
 				}
 				
 			}
-	//__________________________________________Друга складність
+	//__________________________________________Р”СЂСѓРіР° СЃРєР»Р°РґРЅС–СЃС‚СЊ
 			if(number==2){
 				for(i=0; i<n; i++){
 					for(j=0; j<m; j++){
@@ -153,7 +153,7 @@ void mashing(char mas[n][m], char copy_mas[n][m], int number){
 					}
 				}
 			}
-	//__________________________________________Третя складність
+	//__________________________________________РўСЂРµС‚СЏ СЃРєР»Р°РґРЅС–СЃС‚СЊ
 			if(number==3){
 					for(i=0; i<n; i++){
 						for(j=0; j<m; j++){
@@ -169,14 +169,14 @@ void mashing(char mas[n][m], char copy_mas[n][m], int number){
 			}
 	
 }
-//---------------------------------------ввід з клавіатури чисел в поле матриці
+//---------------------------------------РІРІС–Рґ Р· РєР»Р°РІС–Р°С‚СѓСЂРё С‡РёСЃРµР» РІ РїРѕР»Рµ РјР°С‚СЂРёС†С–
 void keyboard_input(char mas[n][m], char copy_mas[n][m], int number){
 		mashing(mas, copy_mas, number);
 		HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE); 
 	int i,j,count=0, count2=0, move, s=0, temp=0, x=0,y=0, flag=0,x1, y1, i1, j1, kol_chisel;
-	int ch=1+rand()%80;// Число яке знахотиться в переменній вказує на номер комірки, на якій зупинеться курсор (Коли "ch" відповідатиме "s")
+	int ch=1+rand()%80;// Р§РёСЃР»Рѕ СЏРєРµ Р·РЅР°С…РѕС‚РёС‚СЊСЃСЏ РІ РїРµСЂРµРјРµРЅРЅС–Р№ РІРєР°Р·СѓС” РЅР° РЅРѕРјРµСЂ РєРѕРјС–СЂРєРё, РЅР° СЏРєС–Р№ Р·СѓРїРёРЅРµС‚СЊСЃСЏ РєСѓСЂСЃРѕСЂ (РљРѕР»Рё "ch" РІС–РґРїРѕРІС–РґР°С‚РёРјРµ "s")
 	char mas3[n][m]={' '}, valid_number_2=0;
-	//________________Копіюємо матрицю для подальшої вставки в Алгоритм, який сам може вирішити правильно поле судоку
+	//________________РљРѕРїС–СЋС”РјРѕ РјР°С‚СЂРёС†СЋ РґР»СЏ РїРѕРґР°Р»СЊС€РѕС— РІСЃС‚Р°РІРєРё РІ РђР»РіРѕСЂРёС‚Рј, СЏРєРёР№ СЃР°Рј РјРѕР¶Рµ РІРёСЂС–С€РёС‚Рё РїСЂР°РІРёР»СЊРЅРѕ РїРѕР»Рµ СЃСѓРґРѕРєСѓ
 	for(i=0; i<n; i++){
 		for(j=0; j<n; j++){
 			mas3[i][j]=mas[i][j];
@@ -185,52 +185,52 @@ void keyboard_input(char mas[n][m], char copy_mas[n][m], int number){
 	//________________
 	while(flag!=2)
 		{if(ch<0){ch+=9;}
-		else if(ch>80){ch-=9;}// встановлюємо межі поля, щоб курсор не вийшов за них
+		else if(ch>80){ch-=9;}// РІСЃС‚Р°РЅРѕРІР»СЋС”РјРѕ РјРµР¶С– РїРѕР»СЏ, С‰РѕР± РєСѓСЂСЃРѕСЂ РЅРµ РІРёР№С€РѕРІ Р·Р° РЅРёС…
 		kol_chisel=0;
-//_________________________________Вивід на екран
+//_________________________________Р’РёРІС–Рґ РЅР° РµРєСЂР°РЅ
 		for(i=0,i1=0; i<n,i1<n; i++, i1++){
 				for(j=0,j1=0; j<m, j1<m; j++, j1++){
 					count++;
 					if(s==ch&&temp==0){	
 							SetConsoleTextAttribute(console, FOREGROUND_GREEN);
-							printf("[%c]", mas[i][j]);//Якщо ми ввели правильшу цифру
+							printf("[%c]", mas[i][j]);//РЇРєС‰Рѕ РјРё РІРІРµР»Рё РїСЂР°РІРёР»СЊРЅСѓ С†РёС„СЂСѓ
 							SetConsoleTextAttribute(console, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 							x=i; y=j;
 							x1=i1; y1=j1;
 						}
 					else if(s==ch&&temp<3){
 							SetConsoleTextAttribute(console, FOREGROUND_RED);
-							printf("[%c]", mas[i][j]);//Якщо ми ввели неправильшу цифру
+							printf("[%c]", mas[i][j]);//РЇРєС‰Рѕ РјРё РІРІРµР»Рё РЅРµ РїСЂР°РІРёР»СЊРЅСѓ С†РёС„СЂСѓ
 							SetConsoleTextAttribute(console, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 							x=i; y=j;
 							x1=i1; y1=j1;
 						}
 					else if(mas[i][j]!='-'&&mas[i][j]!=copy_mas[i1][j1]&&temp!=3){
 							SetConsoleTextAttribute(console, FOREGROUND_RED);
-							printf("[%c]", mas[i][j]);//Якщо ми ввели неправильшу цифру і пішли курсором далі не змінюючи її
+							printf("[%c]", mas[i][j]);//РЇРєС‰Рѕ РјРё РІРІРµР»Рё РЅРµ РїСЂР°РІРёР»СЊРЅСѓ С†РёС„СЂСѓ С– РїС–С€Р»Рё РєСѓСЂСЃРѕСЂРѕРј РґР°Р»С– РЅРµ Р·РјС–РЅСЋСЋС‡Рё С—С—
 							SetConsoleTextAttribute(console, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 						}
 					else if(temp==3){	
 							SetConsoleTextAttribute(console, FOREGROUND_GREEN);
-							printf("[%c]", mas[i][j]);//Якщо ми попросили програму самій вирішити нашу гру
+							printf("[%c]", mas[i][j]);//РЇРєС‰Рѕ РјРё РїРѕРїСЂРѕСЃРёР»Рё РїСЂРѕРіСЂР°РјСѓ СЃР°РјС–Р№ РІРёСЂС–С€РёС‚Рё РЅР°С€Сѓ РіСЂСѓ
 							SetConsoleTextAttribute(console, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 						}
 					else{	
 							SetConsoleTextAttribute(console, FOREGROUND_BLUE | FOREGROUND_GREEN);
-							printf(" %c ", mas[i][j]);//Не зміння числа в матриці які програма згенерувала сама
+							printf(" %c ", mas[i][j]);//РќРµ Р·РјС–РЅРЅСЏ С‡РёСЃР»Р° РІ РјР°С‚СЂРёС†С– СЏРєС– РїСЂРѕРіСЂР°РјР° Р·РіРµРЅРµСЂСѓРІР°Р»Р° СЃР°РјР°
 							SetConsoleTextAttribute(console, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 						}
 					
 					if(mas[i][j]=='-'){
-							kol_chisel++;//Підрахунок кількості невідомих чисел
+							kol_chisel++;//РџС–РґСЂР°С…СѓРЅРѕРє РєС–Р»СЊРєРѕСЃС‚С– РЅРµРІС–РґРѕРјРёС… С‡РёСЃРµР»
 						}
-					//_______________________Малюємо поле нашої гри
+					//_______________________РњР°Р»СЋС”РјРѕ РїРѕР»Рµ РіСЂРё
 					if(count%3==0){
 							SetConsoleTextAttribute(console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
 								printf("|");
 							SetConsoleTextAttribute(console, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 						}
-						s++;//переменна являється щотчиком, коли вона зустрічається із переменною "ch"б в той момент ми висвітлюємо на екран наш курсор на полю "[ ]"
+						s++;//РїРµСЂРµРјРµРЅРЅР° СЏРІР»СЏС”С‚СЊСЃСЏ С‰РѕС‚С‡РёРєРѕРј, РєРѕР»Рё РІРѕРЅР° Р·СѓСЃС‚СЂС–С‡Р°С”С‚СЊСЃСЏ С–Р· РїРµСЂРµРјРµРЅРЅРѕСЋ "ch"Р± РІ С‚РѕР№ РјРѕРјРµРЅС‚ РјРё РІРёСЃРІС–С‚Р»СЋС”РјРѕ РЅР° РµРєСЂР°РЅ РЅР°С€ РєСѓСЂСЃРѕСЂ РЅР° РїРѕР»СЋ "[ ]"
 				}
 						printf("\n");
 						count2++;
@@ -249,7 +249,7 @@ void keyboard_input(char mas[n][m], char copy_mas[n][m], int number){
 					printf("\nYOU WIN\n");
 				}
 //________________________________________________
-			if(temp<3&&temp>0){//перевірка на правильність введеного числа в комірку матриці
+			if(temp<3&&temp>0){//РїРµСЂРµРІС–СЂРєР° РЅР° РїСЂР°РІРёР»СЊРЅС–СЃС‚СЊ РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р° РІ РєРѕРјС–СЂРєСѓ РјР°С‚СЂРёС†С–
 					SetConsoleTextAttribute(console, FOREGROUND_RED);
 						printf("\nYou entered incorrect number! Try again!");
 					SetConsoleTextAttribute(console, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
@@ -257,7 +257,7 @@ void keyboard_input(char mas[n][m], char copy_mas[n][m], int number){
 				}
 			move=getch();
 			switch(move){
-			//_________________________________________Управління з клавіатури
+			//_________________________________________РЈРїСЂР°РІР»С–РЅРЅСЏ Р· РєР»Р°РІС–Р°С‚СѓСЂРё
 					case'W':
 					case'w':{ch-=9;s=0;};break;
 					case'S':
@@ -268,82 +268,82 @@ void keyboard_input(char mas[n][m], char copy_mas[n][m], int number){
 					case'd':{ch+=1;s=0;};break;
 			//__________________________________________
 					case'N':
-					case'n': {flag=2;s=0;}break;//Якщо користувач хоче вийти в головне меню
+					case'n': {flag=2;s=0;}break;//РЇРєС‰Рѕ РєРѕСЂРёСЃС‚СѓРІР°С‡ С…РѕС‡Рµ РІРёР№С‚Рё РІ РіРѕР»РѕРІРЅРµ РјРµРЅСЋ
 					case'H':
-					case'h': {mas[x][y]=copy_mas[x1][y1];s=0;}break;//Якщо користувач скористався підказкою
+					case'h': {mas[x][y]=copy_mas[x1][y1];s=0;}break;//РЇРєС‰Рѕ РєРѕСЂРёСЃС‚СѓРІР°С‡ СЃРєРѕСЂРёСЃС‚Р°РІСЃСЏ РїС–РґРєР°Р·РєРѕСЋ
 					case 'Y':
 					case 'y':  {for(i=0; i<n; i++){
 									for(j=0; j<n; j++){
 										mas[i][j]=mas3[i][j];
 									}
 								}
-								source(mas);s=0;temp=3;}break;//Викликаємо функцію source(mas), з алгоритмом вирішення поля судоку, якщо користувач забажав щоб програма вирішила нашу матрицю сама
+								source(mas);s=0;temp=3;}break;//Р’РёРєР»РёРєР°С”РјРѕ С„СѓРЅРєС†С–СЋ source(mas), Р· Р°Р»РіРѕСЂРёС‚РјРѕРј РІРёСЂС–С€РµРЅРЅСЏ РїРѕР»СЏ СЃСѓРґРѕРєСѓ, СЏРєС‰Рѕ РєРѕСЂРёСЃС‚СѓРІР°С‡ Р·Р°Р±Р°Р¶Р°РІ С‰РѕР± РїСЂРѕРіСЂР°РјР° РІРёСЂС–С€РёР»Р° РЅР°С€Сѓ РјР°С‚СЂРёС†СЋ СЃР°РјР°
 							
 					case'1': if(mas[x][y]=='-' || copy_mas[x1][y1]!=mas[x][y]){
 									valid_number_2='1';
-									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//-перевірка правильності введеного числа!
+									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//РїРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 									s=0;break;
 								}
 					case'2': if(mas[x][y]=='-'|| copy_mas[x1][y1]!=mas[x][y]){
 									valid_number_2='2';
-									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//-перевірка правильності введеного числа!
+									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//РїРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 									s=0;break;
 								}
 					case'3': if(mas[x][y]=='-'|| copy_mas[x1][y1]!=mas[x][y]){
 									valid_number_2='3';
-									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//-перевірка правильності введеного числа!
+									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//РїРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 									s=0;break;
 								}
 					case'4': if(mas[x][y]=='-'|| copy_mas[x1][y1]!=mas[x][y]){
 									valid_number_2='4';
-									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//-перевірка правильності введеного числа!
+									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//РїРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 									s=0;break;
 								}
 					case'5': if(mas[x][y]=='-'|| copy_mas[x1][y1]!=mas[x][y]){
 									valid_number_2='5';
-									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//-перевірка правильності введеного числа!
+									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//РїРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 									s=0;break;
 								}
 					case'6': if(mas[x][y]=='-'|| copy_mas[x1][y1]!=mas[x][y]){
 									valid_number_2='6';
-									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//-перевірка правильності введеного числа!
+									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//РїРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 									s=0;break;
 								}
 					case'7': if(mas[x][y]=='-'|| copy_mas[x1][y1]!=mas[x][y]){
 									valid_number_2='7';
-									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//-перевірка правильності введеного числа!
+									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//РїРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 									s=0;break;
 								}
 					case'8': if(mas[x][y]=='-'|| copy_mas[x1][y1]!=mas[x][y]){
 									valid_number_2='8';
-									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//-перевірка правильності введеного числа!
+									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//РїРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 									s=0;break;
 								}
 					case'9': if(mas[x][y]=='-'|| copy_mas[x1][y1]!=mas[x][y]){
 									valid_number_2='9';
-									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//-перевірка правильності введеного числа!
+									number_check(mas,copy_mas,valid_number_2,x,y,x1,y1,&temp);//РїРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 									s=0;break;
 								}
 				}
 				s=0;system("cls");
 	}
 }
-//*************************************************************************Алгоритм рішення поля судоку
-int valid(char mas[][9], int i, int j, char valid_number){//Перевірка, чи число, яке ми хочемо поставити в комірку матриці, є валідним
+//*************************************************************************РђР»РіРѕСЂРёС‚Рј СЂС–С€РµРЅРЅСЏ РїРѕР»СЏ СЃСѓРґРѕРєСѓ
+int valid(char mas[][9], int i, int j, char valid_number){//РџРµСЂРµРІС–СЂРєР°, С‡Рё С‡РёСЃР»Рѕ, СЏРєРµ РјРё С…РѕС‡РµРјРѕ РїРѕСЃС‚Р°РІРёС‚Рё РІ РєРѕРјС–СЂРєСѓ РјР°С‚СЂРёС†С–, С” РІР°Р»С–РґРЅРёРј
 	int count, row1=0, kol1=0, block=0;
-		//__________________________________Перевірка рядків
+		//__________________________________РџРµСЂРµРІС–СЂРєР° СЂСЏРґРєС–РІ
 		for(count=0; count<9; count++){
 			if(mas[i][count]==valid_number){
 				row1++;
 			}
 		}
-		//__________________________________Перевірка стовбців
+		//__________________________________РџРµСЂРµРІС–СЂРєР° СЃС‚РѕРІРїС†С–РІ
 		for(count=0; count<9; count++){
 			if(mas[count][j]==valid_number){
 				kol1++;
 			}
 		}
-		//__________________________________Перевірка блоків
+		//__________________________________РџРµСЂРµРІС–СЂРєР° Р±Р»РѕРєС–РІ
 		for(count=0; count<9; count++){
 			if(mas[3*(i/3)+count/3][3*(j/3)+count%3]==valid_number){
 				block++;
@@ -354,7 +354,7 @@ int valid(char mas[][9], int i, int j, char valid_number){//Перевірка, чи число,
 		}else return 0;
 }
 
-int source(char mas[][9]){//Рекурсивний алгоритм підстановки числа в комірку матриці
+int source(char mas[][9]){//Р РµРєСѓСЂСЃРёРІРЅРёР№ Р°Р»РіРѕСЂРёС‚Рј РїС–РґСЃС‚Р°РЅРѕРІРєРё С‡РёСЃР»Р° РІ РєРѕРјС–СЂРєСѓ РјР°С‚СЂРёС†С–
 	int i, valid_number, j;
 	for(i=0; i<9; i++){
 		for(j=0; j<9; j++){
@@ -363,9 +363,9 @@ int source(char mas[][9]){//Рекурсивний алгоритм підстановки числа в комірку мат
 					if(valid(mas,i,j, valid_number)){
 						mas[i][j]=valid_number;
 						if(source(mas)){
-							return 1;//якщо число валідне
+							return 1;//РЇРєС‰Рѕ С‡РёСЃР»Рѕ РІР°Р»С–РґРЅРµ
 						}
-						mas[i][j]='-';// якщо число не валідне
+						mas[i][j]='-';//РЇРєС‰Рѕ С‡РёСЃР»Рѕ РЅРµ РІР°Р»С–РґРЅРµ
 					}	
 				}
 				return 0;
@@ -376,7 +376,7 @@ int source(char mas[][9]){//Рекурсивний алгоритм підстановки числа в комірку мат
 }
 //*****************************************************************************
 
-void number_check(char mas[n][m], char copy_mas[n][m], char valid_number_2, int x, int y, int x1, int y1, int *temp){//-перевірка правильності введеного числа!
+void number_check(char mas[n][m], char copy_mas[n][m], char valid_number_2, int x, int y, int x1, int y1, int *temp){//РџРµСЂРµРІС–СЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚С– РІРІРµРґРµРЅРѕРіРѕ С‡РёСЃР»Р°!
 		mas[x][y]=valid_number_2;
 	if(mas[x][y]!=copy_mas[x1][y1]){
 			*temp+=1;
